@@ -1,0 +1,5 @@
+OK - Estabelecer a lógica de verificação de ativo ou não dos operadores (e, ou, xor, implica, biimplica, conclusão, negação)
+
+OK - Fazer os operadores reconhecerem dois argumentos ou dois outros operadores para determinar se deve ser ativo ou não
+
+Iniciar a elaboração de algumas fases de protótipo

@@ -1,24 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ArgumentOperationScript : MonoBehaviour {
+public class ArgumentScript : MonoBehaviour, ICheck {
 
 	[SerializeField] protected ArgumentEnum ArgumentType = new ArgumentEnum();
 	[SerializeField] TextMeshPro ArgumentText;
 	[SerializeField] Light Light;
-	public bool IsTrue;
+	public bool isTrue = false;
 
 	private void ChangeColor( ) {
 
-		Light.color = IsTrue ? Color.green : Color.red;
+		Light.color = isTrue ? Color.green : Color.red;
 
 	}
-	public void ChangeTrue( bool _trueState ) {
+	public void ChangeValue( bool _value ) {
 
-		IsTrue = _trueState;
+		isTrue = _value;
 		ChangeColor();
+
+	}
+	public bool Check( ) {
+
+		return ( isTrue );
 
 	}
 	public ArgumentEnum GetArgumentEnum( ) {
@@ -26,11 +29,25 @@ public class ArgumentOperationScript : MonoBehaviour {
 		return ( ArgumentType );
 
 	}
+	public ICheck GetICheck( ) {
+
+		return ( this );
+
+	}
+
 	protected virtual void Start( ) {
 
 		ArgumentText.text = ArgumentType == ArgumentEnum.Default ? " " : ArgumentType.ToString();
 
 	}
+
+#if UNITY_EDITOR
+	public void SetArgumentText( string _text ) {
+
+		ArgumentText.text = _text;
+
+	}
+#endif
 }
 
 public enum ArgumentEnum {
